@@ -5,7 +5,7 @@ write.csv(deck, file = "cards.csv", row.names = FALSE)
 deal <- function(cards) {
   cards[1, ]
 }
-#exercise 3
+#exercise 2
 shuffle <- function(cards) {
   random <- sample(1:52, size = 52)
   cards[random, ]
