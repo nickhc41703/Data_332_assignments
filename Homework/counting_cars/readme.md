@@ -11,8 +11,9 @@ INTERACT WITH OUR SHINY APP [HERE](https://nickhc41703.shinyapps.io/final/)!
 
 
 ## How we gather the data
-- We went 3 different places that have speed radars on different days and recorded the car brand, vehicle style, starting speed, if they slow down or not.
+- We went to 30th street since it has speed radars, and went on different days and recorded the car brand, vehicle style, starting speed, if they slow down or not.
 - We also include the date and time.
+We put our data into a Google sheet, then consolidated the three data tables into a separate CSV file.
 
 # How our team communicate
 - We communicate daily via Snapchat.
