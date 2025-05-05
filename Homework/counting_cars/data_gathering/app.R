@@ -1,3 +1,5 @@
+
+# Read data
 library(shiny)
 library(ggplot2)
 library(readxl)
@@ -7,8 +9,8 @@ library(DT)
 library(RCurl)
 library(dplyr)
 library(data.table)
+library(stringr)
 
-setwd('C:/Users/nicho/Documents/shiny_app/data_gather/data')
 # Read data
 data_url <- data_url <- getURL('https://raw.githubusercontent.com/nickhc41703/Data_332_assignments/main/Homework/counting_cars/counting_cars_final.csv')
 dataset1 <- read.csv(text = data_url)
@@ -27,13 +29,16 @@ data_url <- data_url <- getURL('https://raw.githubusercontent.com/nissou62/The-v
 dataset4 <- read.csv(text = data_url)
 
 
-dataset5 <- read_xlsx('cars_count.xlsx', .name_repair = 'universal')
+data_url <- data_url <- getURL('https://raw.githubusercontent.com/nickhc41703/Data_332_assignments/refs/heads/main/Homework/counting_cars/cars_count.csv')
+dataset5 <- read.csv(text = data_url)
 
 
-dataset6 <- read_xlsx('carTracker.xlsx', .name_repair = 'universal')
+data_url <- data_url <- getURL('https://raw.githubusercontent.com/nickhc41703/Data_332_assignments/refs/heads/main/Homework/counting_cars/carTracker.csv')
+dataset6 <- read.csv(text = data_url)
 
 
-dataset7 <- read_xlsx('speed_counting_cars.xlsx', .name_repair = 'universal')
+data_url <- data_url <- getURL('https://raw.githubusercontent.com/nickhc41703/Data_332_assignments/refs/heads/main/Homework/counting_cars/speed_counting_cars.csv')
+dataset7 <- read.csv(text = data_url)
 
 #preparing dataset7
 dataset7_transformed <- dataset7 %>%
@@ -50,10 +55,13 @@ dataset7_transformed <- dataset7 %>%
 
 
 #preparing dataset6
+
 dataset6_transformed <- dataset6 %>%
   mutate(
-    date = format(as.Date(TimeTracked), "%m/%d/%Y"),
-    hr.min = format(as.POSIXct(TimeTracked), "%H:%M")
+    cleaned_time = gsub("^[A-Za-z]+,\\s+", "", TimeTracked),
+    parsed_date = mdy(cleaned_time),
+    date = format(parsed_date, "%m/%d/%Y"),
+    hr.min = NA  # No time info exists in TimeTracked
   ) %>%
   rename(
     mph = MPH,
